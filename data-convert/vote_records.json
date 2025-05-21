@@ -1,0 +1,62 @@
+{
+  "records": {
+    "vote": [
+      {
+        "id": "1",
+        "time": "5/21/2025 3:59:48",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
+        "nominee_3": "ID42 - Hoang Thao Nhi - Accounting Department (HCM)"
+      },
+      {
+        "id": "2",
+        "time": "5/21/2025 13:06:07",
+        "nominee_1": "ID05 - Tran Thi Hoai Thuong - Tax Department (HCM)",
+        "nominee_2": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_3": "ID12 - Dao Thi Thuy - Tax Department (HN)"
+      },
+      {
+        "id": "3",
+        "time": "5/21/2025 13:06:31",
+        "nominee_1": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID14 - Nguyen Thi Thuy Hang - Tax Department (HCM)"
+      },
+      {
+        "id": "4",
+        "time": "5/21/2025 15:51:40",
+        "nominee_1": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
+        "nominee_2": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_3": "ID06 - Vo Thi Hoa Mai - Tax Department (HN)"
+      },
+      {
+        "id": "5",
+        "time": "5/21/2025 15:51:53",
+        "nominee_1": "ID35 - Vu Khanh Hung - Accounting Department (HN)",
+        "nominee_2": "ID36 - Nguyen Lan Anh - Tax Department (HN)",
+        "nominee_3": "ID38 - Nguyen Thi Dung - Admin Department (HN)"
+      },
+      {
+        "id": "6",
+        "time": "5/21/2025 15:52:00",
+        "nominee_1": "ID38 - Nguyen Thi Dung - Admin Department (HN)",
+        "nominee_2": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)",
+        "nominee_3": "ID41 - Nguyen Thi Hao - Accounting Department (HCM)"
+      },
+      {
+        "id": "7",
+        "time": "5/21/2025 15:52:09",
+        "nominee_1": "ID29 - Dinh Thu Hien - Japan Desk (HN)",
+        "nominee_2": "ID30 - Vu Manh Hai - Accounting Department (HN)",
+        "nominee_3": "ID33 - Tran Hoang Hai Yen - Accounting Department (HCM)"
+      },
+      {
+        "id": "8",
+        "time": "5/21/2025 15:53:24",
+        "nominee_1": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID26 - Luu Do Thuong - Tax Department (HN)"
+      }
+    ]
+  }
+}

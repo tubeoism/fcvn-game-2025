@@ -1,0 +1,314 @@
+{
+  "voting_ref": {
+    "nominee": [
+      {
+        "aggregate": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "name": "Nguyen Thi Kim Tuyen",
+        "department": "Accounting Department (HCM)",
+        "about": "Bao đồng không lòng vòng",
+        "thumbnail": "thumb/id01.jpg"
+      },
+      {
+        "aggregate": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
+        "name": "Bui Thi Tuyet Ngan",
+        "department": "Accounting Department (HN)",
+        "about": "Know who Tuyet Ngan is?",
+        "thumbnail": "thumb/id02.jpg"
+      },
+      {
+        "aggregate": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "name": "Pham Thi Thu Phuong",
+        "department": "Accounting Department (HN)",
+        "about": "Always strive to meet deadlines",
+        "thumbnail": "thumb/id03.jpg"
+      },
+      {
+        "aggregate": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "name": "Doan Thi Lan Anh",
+        "department": "Tax Department (HN)",
+        "about": "Love everywhere. FCVN: Risk everwhere",
+        "thumbnail": "thumb/id04.jpg"
+      },
+      {
+        "aggregate": "ID05 - Tran Thi Hoai Thuong - Tax Department (HCM)",
+        "name": "Tran Thi Hoai Thuong",
+        "department": "Tax Department (HCM)",
+        "about": "Lạc quan giữa deadline",
+        "thumbnail": "thumb/id05.jpg"
+      },
+      {
+        "aggregate": "ID06 - Vo Thi Hoa Mai - Tax Department (HN)",
+        "name": "Vo Thi Hoa Mai",
+        "department": "Tax Department (HN)",
+        "about": "Không drama, sống chill thôi",
+        "thumbnail": "thumb/id06.jpg"
+      },
+      {
+        "aggregate": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "name": "Le Thi Thuy",
+        "department": "Accounting Department (HN)",
+        "about": "Deadline dí nên bí content",
+        "thumbnail": "thumb/id07.jpg"
+      },
+      {
+        "aggregate": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "name": "Ta Thi Thao",
+        "department": "Accounting Department (HCM)",
+        "about": "Tối tối vẫn tỉnh táo =)))",
+        "thumbnail": "thumb/id08.jpg"
+      },
+      {
+        "aggregate": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "name": "Pham Quynh Linh Duong",
+        "department": "Admin Department (HN)",
+        "about": "Hoa hậu thân thiện",
+        "thumbnail": "thumb/id09.jpg"
+      },
+      {
+        "aggregate": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "name": "Le Thi Hong Hanh",
+        "department": "Tax Department (HCM)",
+        "about": "Tôi thích sống tối giản",
+        "thumbnail": "thumb/id10.jpg"
+      },
+      {
+        "aggregate": "ID11 - Le Thao Quynh Anh - Admin Department (HCM)",
+        "name": "Le Thao Quynh Anh",
+        "department": "Admin Department (HCM)",
+        "about": "Tính thẳng như ruột ngựa!!!",
+        "thumbnail": "thumb/id11.jpg"
+      },
+      {
+        "aggregate": "ID12 - Dao Thi Thuy - Tax Department (HN)",
+        "name": "Dao Thi Thuy",
+        "department": "Tax Department (HN)",
+        "about": "Never give up even pains",
+        "thumbnail": "thumb/id12.jpg"
+      },
+      {
+        "aggregate": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "name": "Do Thi Ngoc Tu",
+        "department": "Accounting Department (HN)",
+        "about": "Thông minh có hạn, nhưng chịu khó thì vô biên.",
+        "thumbnail": "thumb/id13.jpg"
+      },
+      {
+        "aggregate": "ID14 - Nguyen Thi Thuy Hang - Tax Department (HCM)",
+        "name": "Nguyen Thi Thuy Hang",
+        "department": "Tax Department (HCM)",
+        "about": "Thích ăn cơm mẹ nấu",
+        "thumbnail": "thumb/id14.jpg"
+      },
+      {
+        "aggregate": "ID15 - Vu Thi Anh Tuyet - Tax Department (HCM)",
+        "name": "Vu Thi Anh Tuyet",
+        "department": "Tax Department (HCM)",
+        "about": "Snow - Tax team - Gen Z -  Saigonese - Introverted",
+        "thumbnail": "thumb/id15.jpg"
+      },
+      {
+        "aggregate": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "name": "Pham Thi Huyen Trang",
+        "department": "Tax Department (HN)",
+        "about": "Lạc quan, thích thực hành",
+        "thumbnail": "thumb/id16.jpg"
+      },
+      {
+        "aggregate": "ID17 - Nguyen Thi Minh Hang - Admin Department (HN)",
+        "name": "Nguyen Thi Minh Hang",
+        "department": "Admin Department (HN)",
+        "about": "Cứ được chơi là vui",
+        "thumbnail": "thumb/id17.jpg"
+      },
+      {
+        "aggregate": "ID18 - Pham Ngoc Hoa - Japan Desk (HN)",
+        "name": "Pham Ngoc Hoa",
+        "department": "Japan Desk (HN)",
+        "about": "Thích đi chơi :)",
+        "thumbnail": "thumb/id18.jpg"
+      },
+      {
+        "aggregate": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "name": "Pham Thi Huyen",
+        "department": "Accounting Department (HN)",
+        "about": "Ước ở nhà có giải",
+        "thumbnail": "thumb/id19.jpg"
+      },
+      {
+        "aggregate": "ID20 - Tran Quang Duong - Japan Desk (HN)",
+        "name": "Tran Quang Duong",
+        "department": "Japan Desk (HN)",
+        "about": "Giai thích Chô cồ pai",
+        "thumbnail": "thumb/id20.jpg"
+      },
+      {
+        "aggregate": "ID21 - Doan Thi Thanh Hang - Japan Desk (HN)",
+        "name": "Doan Thi Thanh Hang",
+        "department": "Japan Desk (HN)",
+        "about": "Cô nàng thư giãn, hướng nội part-time, còn nữa... nhưng quá 5 chữ rồi ạ :))",
+        "thumbnail": "thumb/id21.jpg"
+      },
+      {
+        "aggregate": "ID22 - Nguyen Thi Huynh Nhu - Accounting Department (HCM)",
+        "name": "Nguyen Thi Huynh Nhu",
+        "department": "Accounting Department (HCM)",
+        "about": "Hướng nội làm kế toán",
+        "thumbnail": "thumb/id22.jpg"
+      },
+      {
+        "aggregate": "ID23 - Bui Khanh Linh - Tax Department (HN)",
+        "name": "Bui Khanh Linh",
+        "department": "Tax Department (HN)",
+        "about": "Linh - Xì tin hay smile 😁",
+        "thumbnail": "thumb/id23.jpg"
+      },
+      {
+        "aggregate": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "name": "Cao Thi Quynh Lien",
+        "department": "Accounting Department (HN)",
+        "about": "Số liệu chuẩn- Quyết đúng",
+        "thumbnail": "thumb/id24.jpg"
+      },
+      {
+        "aggregate": "ID25 - Pham Thi Mai Linh - Accounting Department (HCM)",
+        "name": "Pham Thi Mai Linh",
+        "department": "Accounting Department (HCM)",
+        "about": "Mị còn trẻ Mị chỉ thích đi chơi (^_^)",
+        "thumbnail": "thumb/id25.jpg"
+      },
+      {
+        "aggregate": "ID26 - Luu Do Thuong - Tax Department (HN)",
+        "name": "Luu Do Thuong",
+        "department": "Tax Department (HN)",
+        "about": "Độc nhất, không bản sao",
+        "thumbnail": "thumb/id26.jpg"
+      },
+      {
+        "aggregate": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "name": "Bui Thi Hoa Hue",
+        "department": "Accounting Department (HN)",
+        "about": "A positive mind, happy life",
+        "thumbnail": "thumb/id27.jpg"
+      },
+      {
+        "aggregate": "ID28 - Tran Thi Thuy Linh - Accounting Department (HN)",
+        "name": "Tran Thi Thuy Linh",
+        "department": "Accounting Department (HN)",
+        "about": "Lắng nghe và thấu hiểu",
+        "thumbnail": "thumb/id28.jpg"
+      },
+      {
+        "aggregate": "ID29 - Dinh Thu Hien - Japan Desk (HN)",
+        "name": "Dinh Thu Hien",
+        "department": "Japan Desk (HN)",
+        "about": "Thành viên Japan desk",
+        "thumbnail": "thumb/id29.jpg"
+      },
+      {
+        "aggregate": "ID30 - Vu Manh Hai - Accounting Department (HN)",
+        "name": "Vu Manh Hai",
+        "department": "Accounting Department (HN)",
+        "about": "Trai già cả nghiện việc",
+        "thumbnail": "thumb/id30.jpg"
+      },
+      {
+        "aggregate": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)",
+        "name": "Truong Thi Thuy Trang",
+        "department": "Accounting Department (HN)",
+        "about": "Em út team Kế ạ^^",
+        "thumbnail": "thumb/id31.jpg"
+      },
+      {
+        "aggregate": "ID32 - Le Ngoc Thanh Vy - Accounting Department (HCM)",
+        "name": "Le Ngoc Thanh Vy",
+        "department": "Accounting Department (HCM)",
+        "about": "tốt bụng, đáng tin cậy",
+        "thumbnail": "thumb/id32.jpg"
+      },
+      {
+        "aggregate": "ID33 - Tran Hoang Hai Yen - Accounting Department (HCM)",
+        "name": "Tran Hoang Hai Yen",
+        "department": "Accounting Department (HCM)",
+        "about": "Chill chút rồi tính sau ^o^",
+        "thumbnail": "thumb/id33.jpg"
+      },
+      {
+        "aggregate": "ID34 - Dinh Thi Thu Hoa - Accounting Department (HN)",
+        "name": "Dinh Thi Thu Hoa",
+        "department": "Accounting Department (HN)",
+        "about": "Ít nói, cười hơi nhiều",
+        "thumbnail": "thumb/id34.jpg"
+      },
+      {
+        "aggregate": "ID35 - Vu Khanh Hung - Accounting Department (HN)",
+        "name": "Vu Khanh Hung",
+        "department": "Accounting Department (HN)",
+        "about": "Bình thường, không tầm thường",
+        "thumbnail": "thumb/id35.jpg"
+      },
+      {
+        "aggregate": "ID36 - Nguyen Lan Anh - Tax Department (HN)",
+        "name": "Nguyen Lan Anh",
+        "department": "Tax Department (HN)",
+        "about": "Về hưu nhưng phải đi làm",
+        "thumbnail": "thumb/id36.jpg"
+      },
+      {
+        "aggregate": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)",
+        "name": "Pham Thi Dinh An",
+        "department": "Japan Desk (HCM)",
+        "about": "minimalist",
+        "thumbnail": "thumb/id37.jpg"
+      },
+      {
+        "aggregate": "ID38 - Nguyen Thi Dung - Admin Department (HN)",
+        "name": "Nguyen Thi Dung",
+        "department": "Admin Department (HN)",
+        "about": "NGUYEN THI DUNG",
+        "thumbnail": "thumb/id38.jpg"
+      },
+      {
+        "aggregate": "ID39 - Mai Thanh Huyen - Admin Department (HN)",
+        "name": "Mai Thanh Huyen",
+        "department": "Admin Department (HN)",
+        "about": "Mai Thanh Huyền",
+        "thumbnail": "thumb/id39.jpg"
+      },
+      {
+        "aggregate": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)",
+        "name": "Nguyen Tran Duc Nu",
+        "department": "Admin Department (HCM)",
+        "about": "Tôi là người hướng nội",
+        "thumbnail": "thumb/id40.jpg"
+      },
+      {
+        "aggregate": "ID41 - Nguyen Thi Hao - Accounting Department (HCM)",
+        "name": "Nguyen Thi Hao",
+        "department": "Accounting Department (HCM)",
+        "about": "Thẳng thắn và thực tế",
+        "thumbnail": "thumb/id41.jpg"
+      },
+      {
+        "aggregate": "ID42 - Hoang Thao Nhi - Accounting Department (HCM)",
+        "name": "Hoang Thao Nhi",
+        "department": "Accounting Department (HCM)",
+        "about": "Thảo Nhi - Cây Cỏ Nhỏ",
+        "thumbnail": "thumb/id42.jpg"
+      },
+      {
+        "aggregate": "ID43 - Tran Minh Hieu - Accounting Department (HCM)",
+        "name": "Tran Minh Hieu",
+        "department": "Accounting Department (HCM)",
+        "about": "Ham học hỏi hiền hậu",
+        "thumbnail": "thumb/id43.jpg"
+      },
+      {
+        "aggregate": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)",
+        "name": "Nguyen Tuan Tu",
+        "department": "Accounting Department (HN)",
+        "about": "Extraordinary energetic introvert",
+        "thumbnail": "thumb/id44.jpg"
+      }
+    ]
+  }
+}

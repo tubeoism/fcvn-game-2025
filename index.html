@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương Trình Trò Chơi Gala Dinner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background for gala feel */
+            color: #e2e8f0; /* Light text color */
+        }
+        .game-tab {
+            transition: all 0.3s ease;
+        }
+        .game-tab.active {
+            background-color: #4a5568; /* Darker active tab */
+            color: #f7fafc;
+            border-bottom-width: 4px;
+            border-bottom-color: #f56565; /* Accent color */
+        }
+        .game-content {
+            display: none;
+        }
+        .game-content.active {
+            display: block;
+        }
+        .winner-card {
+            background-color: #2d3748; /* Card background */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        .winner-card img {
+            border-radius: 50%;
+            border: 3px solid #f56565;
+        }
+        input[type="number"] {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            color: #e2e8f0;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+        }
+        button {
+            transition: background-color 0.3s ease;
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #2d3748;
+            margin: 10% auto; /* 10% from the top and centered */
+            padding: 2rem;
+            border: 1px solid #4a5568;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .modal-close {
+            color: #cbd5e0;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #f56565;
+            text-decoration: none;
+        }
+        /* Custom scrollbar for chart container if needed */
+        .chart-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .chart-container::-webkit-scrollbar-track {
+            background: #2d3748;
+            border-radius: 10px;
+        }
+        .chart-container::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+        }
+        .chart-container::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-gray-900 shadow-lg py-6">
+        <h1 class="text-4xl font-bold text-center text-red-400">Gala Dinner - Chương Trình Trò Chơi</h1>
+    </header>
+
+    <nav class="flex justify-center bg-gray-800 p-4 space-x-2 md:space-x-4 shadow-md">
+        <button class="game-tab active text-sm md:text-base py-2 px-3 md:px-6 rounded-t-lg font-semibold" onclick="showGame('game1')">Bình Chọn Ngôi Sao</button>
+        <button class="game-tab text-sm md:text-base py-2 px-3 md:px-6 rounded-t-lg font-semibold" onclick="showGame('game2')">Con Số May Mắn</button>
+        <button class="game-tab text-sm md:text-base py-2 px-3 md:px-6 rounded-t-lg font-semibold" onclick="showGame('game3')">Giải Đặc Biệt</button>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div id="game1" class="game-content active">
+            <h2 class="text-3xl font-semibold mb-6 text-center text-red-300">Trò Chơi 1: Bình Chọn Ngôi Sao</h2>
+            <div class="bg-gray-800 p-4 md:p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-medium mb-4 text-red-200">Kết Quả Bình Chọn</h3>
+                <div class="chart-container overflow-x-auto p-2" style="position: relative; min-height: 400px; max-height: 600px; width: 100%;">
+                    <canvas id="voteChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-4 md:p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-medium mb-4 text-red-200">Người Thắng Cuộc</h3>
+                <div id="voteWinners" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    </div>
+            </div>
+        </div>
+
+        <div id="game2" class="game-content">
+            <h2 class="text-3xl font-semibold mb-6 text-center text-red-300">Trò Chơi 2: Con Số May Mắn</h2>
+            <div class="bg-gray-800 p-4 md:p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-medium mb-4 text-red-200">Nhập Số Dự Thưởng</h3>
+                <form id="luckyNumberForm" class="space-y-4">
+                    <div>
+                        <label class="block mb-1 font-medium text-gray-300">Bộ 6 số Jackpot 1 (mỗi số từ 1-55):</label>
+                        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                            <input type="number" name="jackpot1_1" class="w-full" min="1" max="55" required>
+                            <input type="number" name="jackpot1_2" class="w-full" min="1" max="55" required>
+                            <input type="number" name="jackpot1_3" class="w-full" min="1" max="55" required>
+                            <input type="number" name="jackpot1_4" class="w-full" min="1" max="55" required>
+                            <input type="number" name="jackpot1_5" class="w-full" min="1" max="55" required>
+                            <input type="number" name="jackpot1_6" class="w-full" min="1" max="55" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="specialNumber" class="block mb-1 font-medium text-gray-300">Số đặc biệt Jackpot 2 (từ 1-55):</label>
+                        <input type="number" id="specialNumber" name="specialNumber" class="w-full max-w-xs" min="1" max="55" required>
+                    </div>
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow">Xác Định Số May Mắn</button>
+                </form>
+                <div id="luckyNumberResult" class="mt-6 text-lg">
+                    </div>
+            </div>
+            <div class="bg-gray-800 p-4 md:p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-medium mb-4 text-red-200">Người Thắng Cuộc</h3>
+                <div id="luckyNumberWinners" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    </div>
+            </div>
+        </div>
+
+        <div id="game3" class="game-content">
+            <h2 class="text-3xl font-semibold mb-6 text-center text-red-300">Trò Chơi 3: Giải Đặc Biệt</h2>
+            <div class="text-center mb-8">
+                <button id="drawGrandPrizeButton" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-lg text-xl shadow-lg">Quay Thưởng!</button>
+            </div>
+            <div class="bg-gray-800 p-4 md:p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-medium mb-4 text-red-200 text-center">Người May Mắn Trúng Giải Đặc Biệt</h3>
+                <div id="grandPrizeWinner" class="text-center">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <p id="modalMessageText" class="text-xl"></p>
+        </div>
+    </div>
+
+    <footer class="text-center py-8 mt-12 border-t border-gray-700">
+        <p class="text-gray-400">&copy; <span id="currentYear"></span> Công Ty. Chúc quý vị một đêm Gala vui vẻ!</p>
+    </footer>
+
+    <script>
+        // Helper function to fetch JSON data
+        async function fetchData(filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} for ${filePath}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error("Lỗi khi tải dữ liệu:", error);
+                showModal(`Lỗi khi tải dữ liệu: ${error.message}. Vui lòng kiểm tra đường dẫn file và cấu trúc JSON.`);
+                return null;
+            }
+        }
+
+        // --- Navigation ---
+        function showGame(gameId) {
+            const gameContents = document.querySelectorAll('.game-content');
+            gameContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(gameId).classList.add('active');
+
+            const gameTabs = document.querySelectorAll('.game-tab');
+            gameTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.game-tab[onclick="showGame('${gameId}')"]`).classList.add('active');
+        }
+
+        // --- Modal ---
+        const messageModal = document.getElementById('messageModal');
+        const modalMessageText = document.getElementById('modalMessageText');
+        function showModal(message) {
+            modalMessageText.textContent = message;
+            messageModal.style.display = 'block';
+        }
+        function closeModal() {
+            messageModal.style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == messageModal) {
+                closeModal();
+            }
+        }
+
+        // --- Game 1: Voting Game ---
+        let voteChartInstance = null; // To keep track of the chart instance
+
+        async function initGame1() {
+            const voteRecords = await fetchData('./data/vote_records.json');
+            const votingRef = await fetchData('./data/voting_ref.json');
+
+            if (!voteRecords || !votingRef) {
+                showModal("Không thể tải dữ liệu cho Trò chơi 1. Vui lòng kiểm tra console.");
+                return;
+            }
+            
+            // Create a map for quick lookup of nominee details
+            const nomineeDetailsMap = new Map(votingRef.map(nominee => [nominee.id, nominee]));
+
+            const voteCounts = {};
+            voteRecords.forEach(record => {
+                record.nominees_voted.forEach(nomineeId => {
+                    if (nomineeDetailsMap.has(nomineeId)) { // Only count votes for existing nominees
+                         voteCounts[nomineeId] = (voteCounts[nomineeId] || 0) + 1;
+                    }
+                });
+            });
+
+            const sortedNominees = Object.entries(voteCounts)
+                .map(([id, votes]) => ({ id, name: nomineeDetailsMap.get(id)?.name || 'Không rõ tên', votes }))
+                .sort((a, b) => b.votes - a.votes);
+
+            // Prepare data for chart
+            const labels = sortedNominees.map(n => n.name);
+            const data = sortedNominees.map(n => n.votes);
+
+            // Generate hot to cold colors
+            const colors = generateHotToColdColors(sortedNominees.length);
+
+            const ctx = document.getElementById('voteChart').getContext('2d');
+            if (voteChartInstance) {
+                voteChartInstance.destroy(); // Destroy previous chart instance if exists
+            }
+            voteChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số Phiếu Bầu',
+                        data: data,
+                        backgroundColor: colors,
+                        borderColor: colors.map(color => color.replace('0.8', '1')), // Darken border slightly
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bar chart
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: '#e2e8f0', stepSize: 1 }, // Light color for ticks
+                            grid: { color: '#4a5568' } // Grid line color
+                        },
+                        y: {
+                            ticks: { color: '#e2e8f0' }, // Light color for ticks
+                            grid: { color: '#2d3748' } // Grid line color (darker)
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Hide legend as it's clear from axis
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Announce winners
+            const voteWinnersDiv = document.getElementById('voteWinners');
+            voteWinnersDiv.innerHTML = ''; // Clear previous winners
+            if (sortedNominees.length > 0) {
+                const maxVotes = sortedNominees[0].votes;
+                const winners = sortedNominees.filter(n => n.votes === maxVotes);
+
+                if (winners.length > 0) {
+                    winners.forEach(winner => {
+                        const nomineeInfo = nomineeDetailsMap.get(winner.id);
+                        if (nomineeInfo) {
+                            const winnerCard = `
+                                <div class="winner-card flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                                    <img src="${nomineeInfo.thumbnail}" alt="${nomineeInfo.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';">
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-bold text-red-300">${nomineeInfo.name}</h4>
+                                        <p class="text-gray-300">${nomineeInfo.department}</p>
+                                        <p class="text-gray-400 mt-2 text-sm italic">"${nomineeInfo.self_intro}"</p>
+                                    </div>
+                                </div>`;
+                            voteWinnersDiv.innerHTML += winnerCard;
+                        }
+                    });
+                } else {
+                    voteWinnersDiv.innerHTML = '<p class="text-gray-400 text-center col-span-full">Không có người thắng cuộc.</p>';
+                }
+            } else {
+                 voteWinnersDiv.innerHTML = '<p class="text-gray-400 text-center col-span-full">Chưa có dữ liệu bình chọn.</p>';
+            }
+        }
+
+        function generateHotToColdColors(count) {
+            const colors = [];
+            // Example: Red -> Orange -> Yellow -> Green -> Blue
+            const baseColors = [
+                [255, 99, 132],  // Red
+                [255, 159, 64],  // Orange
+                [255, 205, 86],  // Yellow
+                [75, 192, 192],   // Green
+                [54, 162, 235],   // Blue
+                [153, 102, 255]  // Purple
+            ];
+            for (let i = 0; i < count; i++) {
+                // Simple interpolation or cycling through predefined colors
+                const colorIndex = Math.floor((i / count) * baseColors.length) % baseColors.length;
+                const [r, g, b] = baseColors[colorIndex];
+                // Adjust opacity or create a gradient if needed
+                // For simplicity, we'll use solid colors and cycle if count > baseColors.length
+                colors.push(`rgba(${r}, ${g}, ${b}, 0.8)`);
+            }
+            if (count === 0) return ['rgba(200, 200, 200, 0.8)']; // Default color if no data
+            return colors;
+        }
+
+
+        // --- Game 2: Lucky Number Game ---
+        document.getElementById('luckyNumberForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const jackpot1Numbers = [
+                parseInt(formData.get('jackpot1_1')),
+                parseInt(formData.get('jackpot1_2')),
+                parseInt(formData.get('jackpot1_3')),
+                parseInt(formData.get('jackpot1_4')),
+                parseInt(formData.get('jackpot1_5')),
+                parseInt(formData.get('jackpot1_6')),
+            ];
+            const specialNumber = parseInt(formData.get('specialNumber'));
+
+            // Validate inputs
+            const allInputNumbers = [...jackpot1Numbers, specialNumber];
+            if (allInputNumbers.some(isNaN)) {
+                showModal("Vui lòng nhập đủ 7 số hợp lệ.");
+                return;
+            }
+            if (allInputNumbers.some(num => num < 1 || num > 55)) {
+                showModal("Các số phải nằm trong khoảng từ 1 đến 55.");
+                return;
+            }
+             // Check for duplicate numbers within the 7 inputs
+            if (new Set(allInputNumbers).size !== 7) {
+                showModal("Vui lòng không nhập các số trùng nhau trong 7 số đầu vào.");
+                return;
+            }
+
+
+            const luckyNumberChain = await fetchData('./data/lucky_number.json'); // This is the sorted list of lucky numbers
+            const participantsData = await fetchData('./data/voting_ref.json'); // Assuming this contains participants and their personal lucky_number_game2
+
+            if (!luckyNumberChain || !participantsData) {
+                showModal("Không thể tải dữ liệu cho Trò chơi 2. Vui lòng kiểm tra console.");
+                return;
+            }
+            
+            // 1. Sort the 7 input numbers
+            const sortedInputNumbers = [...allInputNumbers].sort((a, b) => a - b);
+
+            // 2. Find the rank (1-indexed) of the specialNumber (S7)
+            const rankOfS7 = sortedInputNumbers.indexOf(specialNumber) + 1;
+
+            // 3. Calculate percentile rank P_rank, rounded to nearest %
+            // P_rank = ((k - 1) / (N - 1)) * 100, where N=7
+            const percentileRank = Math.round(((rankOfS7 - 1) / (7 - 1)) * 100);
+
+            // 4. Apply to lucky_number.json (luckyNumberChain)
+            // V_percentile = L[round(P_rank/100 * (M-1))]
+            const M = luckyNumberChain.length;
+            if (M === 0) {
+                showModal("Chuỗi số may mắn (lucky_number.json) rỗng.");
+                return;
+            }
+            const percentileValueIndex = Math.round((percentileRank / 100) * (M - 1));
+            const V_percentile = luckyNumberChain[Math.min(Math.max(0, percentileValueIndex), M - 1)]; // Ensure index is within bounds
+
+
+            // 5. Determine the "determined lucky number": largest number in luckyNumberChain < V_percentile
+            let determinedLuckyNumber = -1; // Initialize with a value that implies not found
+            for (let i = luckyNumberChain.length - 1; i >= 0; i--) {
+                if (luckyNumberChain[i] < V_percentile) {
+                    determinedLuckyNumber = luckyNumberChain[i];
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('luckyNumberResult');
+            if (determinedLuckyNumber !== -1) {
+                 resultDiv.innerHTML = `
+                    <p>7 số đã nhập: ${allInputNumbers.join(', ')}</p>
+                    <p>Số đặc biệt (S7): ${specialNumber}</p>
+                    <p>7 số sau khi sắp xếp: ${sortedInputNumbers.join(', ')}</p>
+                    <p>Vị trí của S7 trong dãy sắp xếp (k): ${rankOfS7}</p>
+                    <p>Vị trí bách phân vị (làm tròn %): ${percentileRank}%</p>
+                    <p>Chuỗi số may mắn (lucky_number.json): [${luckyNumberChain.join(', ')}]</p>
+                    <p>Giá trị bách phân vị tương ứng (V_percentile) từ chuỗi số may mắn: ${V_percentile}</p>
+                    <p class="font-bold text-xl text-yellow-300">Số May Mắn Được Xác Định: ${determinedLuckyNumber}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <p>7 số đã nhập: ${allInputNumbers.join(', ')}</p>
+                    <p>Số đặc biệt (S7): ${specialNumber}</p>
+                    <p>7 số sau khi sắp xếp: ${sortedInputNumbers.join(', ')}</p>
+                    <p>Vị trí của S7 trong dãy sắp xếp (k): ${rankOfS7}</p>
+                    <p>Vị trí bách phân vị (làm tròn %): ${percentileRank}%</p>
+                    <p>Chuỗi số may mắn (lucky_number.json): [${luckyNumberChain.join(', ')}]</p>
+                    <p>Giá trị bách phân vị tương ứng (V_percentile) từ chuỗi số may mắn: ${V_percentile}</p>
+                    <p class="font-bold text-xl text-yellow-300">Không tìm thấy số may mắn nào nhỏ hơn ${V_percentile} trong chuỗi.</p>
+                `;
+            }
+
+
+            // Announce winners
+            const luckyNumberWinnersDiv = document.getElementById('luckyNumberWinners');
+            luckyNumberWinnersDiv.innerHTML = ''; // Clear previous winners
+
+            if (determinedLuckyNumber !== -1) {
+                const winners = participantsData.filter(p => p.lucky_number_game2 === determinedLuckyNumber);
+                if (winners.length > 0) {
+                    winners.forEach(winner => {
+                        const winnerCard = `
+                            <div class="winner-card flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
+                                <img src="${winner.thumbnail}" alt="${winner.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';">
+                                <div class="text-center sm:text-left">
+                                    <h4 class="text-xl md:text-2xl font-bold text-red-300">${winner.name}</h4>
+                                    <p class="text-gray-300">${winner.department}</p>
+                                    <p class="text-gray-400 mt-2 text-sm italic">"${winner.self_intro}"</p>
+                                    <p class="text-yellow-400 font-semibold">Số may mắn cá nhân: ${winner.lucky_number_game2}</p>
+                                </div>
+                            </div>`;
+                        luckyNumberWinnersDiv.innerHTML += winnerCard;
+                    });
+                } else {
+                    luckyNumberWinnersDiv.innerHTML = `<p class="text-gray-400 text-center col-span-full">Không có ai sở hữu số may mắn ${determinedLuckyNumber}.</p>`;
+                }
+            } else {
+                 luckyNumberWinnersDiv.innerHTML = `<p class="text-gray-400 text-center col-span-full">Không xác định được số may mắn để tìm người thắng cuộc.</p>`;
+            }
+        });
+
+        // --- Game 3: Grand Prize ---
+        document.getElementById('drawGrandPrizeButton').addEventListener('click', async function() {
+            const grandPrizeParticipants = await fetchData('./data/grand_prize.json');
+            if (!grandPrizeParticipants || grandPrizeParticipants.length === 0) {
+                showModal("Không có danh sách người tham gia cho Giải Đặc Biệt hoặc không thể tải dữ liệu.");
+                return;
+            }
+
+            // Simple loading/drawing animation
+            const button = this;
+            const originalText = button.textContent;
+            button.textContent = "Đang quay...";
+            button.disabled = true;
+
+            // Simulate drawing time
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * grandPrizeParticipants.length);
+                const winner = grandPrizeParticipants[randomIndex];
+
+                const grandPrizeWinnerDiv = document.getElementById('grandPrizeWinner');
+                grandPrizeWinnerDiv.innerHTML = `
+                    <div class="winner-card inline-block max-w-md mx-auto">
+                        <img src="${winner.thumbnail}" alt="${winner.name}" class="w-32 h-32 md:w-40 md:h-40 object-cover mx-auto mb-4" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=Ảnh';">
+                        <h4 class="text-2xl md:text-3xl font-bold text-yellow-300">${winner.name}</h4>
+                        <p class="text-gray-200 text-lg">${winner.department}</p>
+                        <p class="text-gray-300 mt-3 text-md italic">"${winner.self_intro}"</p>
+                    </div>
+                `;
+                button.textContent = originalText;
+                button.disabled = false;
+                showModal(`Chúc mừng ${winner.name} đã trúng Giải Đặc Biệt!`);
+            }, 2000); // 2 seconds delay for "drawing" effect
+        });
+        
+        // --- Initialize ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initGame1(); // Load Game 1 data on page load
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+    </script>
+</body>
+</html>
