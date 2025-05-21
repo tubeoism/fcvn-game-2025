@@ -17,25 +17,35 @@
         <section class="game-section">
             <div class="input-form">
                 <div class="jackpot-group">
-                    <label>Jackpot 1:</label>
+                    <label>Jackpot 1 (1-55):</label>
                     <div class="numbers-container">
-                        <input type="number" id="jackpot1_1" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
-                        <input type="number" id="jackpot1_2" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
-                        <input type="number" id="jackpot1_3" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
-                        <input type="number" id="jackpot1_4" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
-                        <input type="number" id="jackpot1_5" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
-                        <input type="number" id="jackpot1_6" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
+                        <input type="number" id="jackpot1_1" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_3" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_4" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_5" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_6" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="jackpot-group">
-                    <label>Jackpot 2:</label>
+                    <label>Jackpot 2 (1-55):</label>
                     <div class="numbers-container">
-                        <input type="number" id="jackpot2" min="0" max="99" value="00" onfocus="this.select()" oninput="padZero(this)" required>
+                        <input type="number" id="jackpot2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
                     </div>
                 </div>
                 <button onclick="calculateLuckyNumber()">Xác định số may mắn</button>
             </div>
+
+            <div id="calculation-details" style="display:none; margin-top: 20px; text-align: left; background-color: #f0f8ff; padding: 15px; border-radius: 8px;">
+                <h4>Chi tiết tính toán:</h4>
+                <p><strong>Bộ 7 số đã nhập:</strong> <span id="entered-numbers"></span></p>
+                <p><strong>Số Jackpot 2:</strong> <span id="jackpot2-display"></span></p>
+                <p><strong>Vị trí bách phân vị (làm tròn) từ bộ 7 số:</strong> <span id="percentile-rank-display"></span>%</p>
+                <p><strong>Giá trị bách phân vị tương ứng từ bộ Lucky Number:</strong> <span id="calculated-lucky-value-display"></span></p>
+                <p><strong>Số may mắn được xác định:</strong> <span id="final-lucky-number-display" style="font-weight: bold; color: #d9534f;"></span></p>
+            </div>
+
             <h3>Người thắng cuộc trò chơi 2:</h3>
             <div id="game2-winners" class="winners-table"></div>
         </section>
