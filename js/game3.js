@@ -46,23 +46,29 @@ function displayWinners(containerId, winners) {
     });
 }
 
-let spinningInterval; // Biến để lưu trữ ID của setInterval
-let currentSpinIndex = 0; // Index của người đang hiển thị
-let spinSpeed = 100; // Tốc độ ban đầu (milliseconds)
-const initialSpeed = 50; // Tốc độ nhanh nhất (mỗi 50ms chuyển 1 người)
-const maxSpeed = 500; // Tốc độ chậm nhất (0.5 giây chuyển 1 người) - Điều chỉnh để vòng quay nhanh hơn
+let spinningInterval = null; // Khởi tạo là null
+let currentSpinIndex = 0;
 const totalSpinTime = 10000; // Tổng thời gian quay (10 giây)
-let startTime; // Thời điểm bắt đầu quay
+const initialDelay = 500; // Độ trễ ban đầu giữa các lần chuyển (chậm nhất)
+const finalDelay = 50; // Độ trễ cuối cùng giữa các lần chuyển (nhanh nhất)
+
+let nomineesList = []; // Danh sách nominee được tải một lần
+let finalWinnerChosen = null; // Lưu người thắng cuộc cuối cùng
 
 async function startSpinning() {
+    // Nếu đang quay, không làm gì cả
+    if (spinningInterval !== null) {
+        return;
+    }
+
     const grandPrizeData = await fetchData('grand_prize.json');
     if (!grandPrizeData) {
         alert('Không thể tải dữ liệu giải thưởng lớn.');
         return;
     }
 
-    const nominees = grandPrizeData.grand_prize.nominee;
-    if (nominees.length === 0) {
+    nomineesList = grandPrizeData.grand_prize.nominee;
+    if (nomineesList.length === 0) {
         alert('Không có ứng viên cho giải thưởng lớn.');
         return;
     }
@@ -75,71 +81,64 @@ async function startSpinning() {
     document.querySelector('.game-section button').disabled = true;
 
     currentSpinIndex = 0;
-    spinSpeed = maxSpeed; // Bắt đầu chậm
-    startTime = Date.now();
+    // Chọn người thắng cuộc ngay từ đầu
+    finalWinnerChosen = nomineesList[Math.floor(Math.random() * nomineesList.length)];
 
-    // Lựa chọn người thắng cuộc cuối cùng (ngẫu nhiên)
-    const finalWinnerIndex = Math.floor(Math.random() * nominees.length);
+    let startTime = Date.now();
 
-    // Hàm để cập nhật hiển thị người đang chạy
-    function updateSpinningDisplay() {
+    function animateSpin() {
         const elapsedTime = Date.now() - startTime;
 
-        // Tính toán tốc độ: tăng dần trong 10% đầu tiên, giảm dần trong 10% cuối cùng
-        let speedProgress = elapsedTime / totalSpinTime; // Tiến độ từ 0 đến 1
-
-        let currentCalculatedSpeed;
-        if (speedProgress < 0.1) { // 10% thời gian đầu tiên (tăng tốc)
-            // Từ maxSpeed giảm tuyến tính về initialSpeed
-            currentCalculatedSpeed = maxSpeed - (maxSpeed - initialSpeed) * (speedProgress / 0.1);
-        } else if (speedProgress > 0.9) { // 10% thời gian cuối cùng (giảm tốc)
-            // Từ initialSpeed tăng tuyến tính về maxSpeed
-            currentCalculatedSpeed = initialSpeed + (maxSpeed - initialSpeed) * ((speedProgress - 0.9) / 0.1);
-        } else { // Phần giữa (tốc độ nhanh nhất)
-            currentCalculatedSpeed = initialSpeed;
+        if (elapsedTime >= totalSpinTime) {
+            // Đã hết thời gian quay, dừng và hiển thị người thắng cuộc
+            clearInterval(spinningInterval);
+            spinningInterval = null; // Reset interval handle
+            displayFinalWinner(finalWinnerChosen);
+            return;
         }
-        
-        spinSpeed = Math.round(currentCalculatedSpeed); // Làm tròn để tránh số thập phân cho setInterval
-        // Đảm bảo tốc độ không quá nhanh hoặc quá chậm so với giới hạn
-        spinSpeed = Math.max(initialSpeed, Math.min(maxSpeed, spinSpeed));
 
+        // Tính toán tốc độ dựa trên thời gian đã trôi qua
+        // Ánh xạ thời gian từ [0, totalSpinTime] sang khoảng tốc độ [initialDelay, finalDelay]
+        let currentDelay;
+        const accelerationPhase = 0.1; // 10% thời gian đầu tăng tốc
+        const decelerationPhase = 0.1; // 10% thời gian cuối giảm tốc
 
-        const nominee = nominees[currentSpinIndex];
+        if (elapsedTime < totalSpinTime * accelerationPhase) {
+            // Tăng tốc: từ initialDelay giảm về finalDelay
+            const progress = elapsedTime / (totalSpinTime * accelerationPhase);
+            currentDelay = initialDelay - (initialDelay - finalDelay) * progress;
+        } else if (elapsedTime > totalSpinTime * (1 - decelerationPhase)) {
+            // Giảm tốc: từ finalDelay tăng về initialDelay
+            const progress = (elapsedTime - totalSpinTime * (1 - decelerationPhase)) / (totalSpinTime * decelerationPhase);
+            currentDelay = finalDelay + (initialDelay - finalDelay) * progress;
+        } else {
+            // Giữa: tốc độ nhanh nhất
+            currentDelay = finalDelay;
+        }
+
+        currentDelay = Math.max(finalDelay, Math.min(initialDelay, currentDelay)); // Đảm bảo nằm trong khoảng
+
+        // Cập nhật hiển thị người đang chạy
+        const nominee = nomineesList[currentSpinIndex];
         document.getElementById('spinning-img').src = `images/${nominee.thumbnail}`;
         document.getElementById('spinning-name').innerHTML = `<strong>${nominee.name}</strong>`;
         document.getElementById('spinning-department').textContent = nominee.department;
         document.getElementById('spinning-about').textContent = nominee.about;
 
-        currentSpinIndex = (currentSpinIndex + 1) % nominees.length; // Chuyển sang người tiếp theo
+        currentSpinIndex = (currentSpinIndex + 1) % nomineesList.length;
 
-        // Kiểm tra xem đã đến lúc dừng và hiển thị người thắng cuộc cuối cùng chưa
-        if (elapsedTime >= totalSpinTime) {
-            clearInterval(spinningInterval); // Dừng quay
-            // Đảm bảo dừng ở người thắng cuộc cuối cùng trước khi hiển thị
-            const finalNominee = nominees[finalWinnerIndex];
-            document.getElementById('spinning-img').src = `images/${finalNominee.thumbnail}`;
-            document.getElementById('spinning-name').innerHTML = `<strong>${finalNominee.name}</strong>`;
-            document.getElementById('spinning-department').textContent = finalNominee.department;
-            document.getElementById('spinning-about').textContent = finalNominee.about;
-
-            // Đợi một chút để người dùng nhìn thấy người cuối cùng trước khi công bố
-            setTimeout(() => {
-                displayFinalWinner(finalNominee);
-            }, maxSpeed * 1.5); // Đợi 1.5 lần tốc độ chậm nhất
-            
-        } else {
-            // Lập lại interval với tốc độ mới
-            clearInterval(spinningInterval); // Clear interval cũ
-            spinningInterval = setInterval(updateSpinningDisplay, spinSpeed); // Set interval mới với tốc độ cập nhật
-        }
+        // Tính toán độ trễ cho lần gọi tiếp theo
+        const nextDelay = Math.round(currentDelay);
+        spinningInterval = setTimeout(animateSpin, nextDelay); // Sử dụng setTimeout thay vì setInterval
     }
 
     // Bắt đầu vòng quay ban đầu
-    spinningInterval = setInterval(updateSpinningDisplay, spinSpeed);
+    spinningInterval = setTimeout(animateSpin, initialDelay);
 }
 
 function displayFinalWinner(winner) {
-    clearInterval(spinningInterval); // Đảm bảo interval đã dừng
+    clearInterval(spinningInterval); // Đảm bảo interval/timeout đã dừng
+    spinningInterval = null; // Reset handle
     document.getElementById('spinning-display').style.display = 'none'; // Ẩn màn hình quay
     displayWinners('game3-winner', [winner]); // Hiển thị người thắng cuộc cuối cùng
     document.querySelector('.game-section button').disabled = false; // Kích hoạt lại nút quay

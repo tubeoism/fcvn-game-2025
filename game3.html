@@ -10,14 +10,24 @@
     <header>
         <h1>Game No.3: Lucky draw for the grand prize</h1>
         <nav class="sub-nav">
-            <a href="index.html">Return to home page</a>
+            <a href="index.html">Game No.3: Lucky draw for the grand prize</a>
         </nav>
     </header>
     <main>
         <section class="game-section">
-            <button onclick="drawGrandPrize()">Draw the lucky person</button>
+            <button onclick="startSpinning()">Draw the lucky person</button>
+
+            <div id="spinning-display" class="winner-card" style="display:none; margin: 20px auto;">
+                <img id="spinning-img" src="images/thumb/id00.jpg" alt="Đang quay">
+                <p><strong id="spinning-name">Randomly selecting ...</strong></p>
+                <p id="spinning-department"></p>
+                <p id="spinning-about"></p>
+            </div>
+
             <h3>The winner is:</h3>
-            <div id="game3-winner" class="winners-table"></div>
+            <div id="game3-winner" class="winners-table">
+                <p>Press "Draw the lucky person" to start!</p>
+            </div>
         </section>
     </main>
     <script src="js/game3.js"></script>
