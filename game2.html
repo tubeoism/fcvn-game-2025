@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trò chơi 2: Con số may mắn</title>
+    <title>Game No.2: Lottery</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Trò chơi 2: Con số may mắn</h1>
+        <h1>Game No.2: Lottery</h1>
         <nav class="sub-nav">
-            <a href="index.html">Về trang chủ</a>
+            <a href="index.html">Return to home page</a>
         </nav>
     </header>
     <main>
         <section class="game-section">
             <div class="input-form">
                 <div class="jackpot-group">
-                    <label>Jackpot 1 (1-55):</label>
+                    <label>Jackpot 1 result (1-55):</label>
                     <div class="numbers-container">
                         <input type="number" id="jackpot1_1" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
                         <input type="number" id="jackpot1_2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
@@ -29,24 +29,24 @@
                 </div>
                 <div class="divider"></div>
                 <div class="jackpot-group">
-                    <label>Jackpot 2 (1-55):</label>
+                    <label>Jackpot 2's special number (1-55):</label>
                     <div class="numbers-container">
                         <input type="number" id="jackpot2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
                     </div>
                 </div>
-                <button onclick="calculateLuckyNumber()">Xác định số may mắn</button>
+                <button onclick="calculateLuckyNumber()">Determine the lucky number</button>
             </div>
 
             <div id="calculation-details" style="display:none; margin-top: 20px; text-align: left; background-color: #f0f8ff; padding: 15px; border-radius: 8px;">
-                <h4>Chi tiết tính toán:</h4>
-                <p><strong>Bộ 7 số đã nhập:</strong> <span id="entered-numbers"></span></p>
-                <p><strong>Số Jackpot 2:</strong> <span id="jackpot2-display"></span></p>
-                <p><strong>Vị trí bách phân vị (làm tròn) từ bộ 7 số:</strong> <span id="percentile-rank-display"></span>%</p>
-                <p><strong>Giá trị bách phân vị tương ứng từ bộ Lucky Number:</strong> <span id="calculated-lucky-value-display"></span></p>
-                <p><strong>Số may mắn được xác định:</strong> <span id="final-lucky-number-display" style="font-weight: bold; color: #d9534f;"></span></p>
+                <h4>Detail calculation:</h4>
+                <p><strong>Inputted array:</strong> <span id="entered-numbers"></span></p>
+                <p><strong>Jackpot 2's special number:</strong> <span id="jackpot2-display"></span></p>
+                <p><strong>Percent rank of Jacpot 2's special number in the array (rounded):</strong> <span id="percentile-rank-display"></span>%</p>
+                <p><strong>Percentile calculated from the array of lucky numbers:</strong> <span id="calculated-lucky-value-display"></span></p>
+                <p><strong>The picked up lucky number:</strong> <span id="final-lucky-number-display" style="font-weight: bold; color: #d9534f;"></span></p>
             </div>
 
-            <h3>Người thắng cuộc trò chơi 2:</h3>
+            <h3>The winner(s) is (are):</h3>
             <div id="game2-winners" class="winners-table"></div>
         </section>
     </main>

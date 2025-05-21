@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trò chơi 1: Bình chọn</title>
+    <title>Game No.1: Vote for the most impressive introduction</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>Trò chơi 1: Bình chọn</h1>
+        <h1>Game No.1: Vote for the most impressive introduction</h1>
         <nav class="sub-nav">
-            <a href="index.html">Về trang chủ</a>
+            <a href="index.html">Return to home page</a>
         </nav>
     </header>
     <main>
         <section class="game-section">
-            <button onclick="loadGame1()">Xem kết quả bình chọn</button>
+            <button onclick="loadGame1()">See the vote counts</button>
             <div id="game1-content" style="display:none;">
                 <div class="chart-container">
                     <canvas id="voteChart"></canvas>
                 </div>
-                <h3>Người thắng cuộc trò chơi 1:</h3>
+                <h3>The winner(s) is (are):</h3>
                 <div id="game1-winners" class="winners-table"></div>
             </div>
         </section>
