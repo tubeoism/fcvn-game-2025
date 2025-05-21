@@ -9,17 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. UTILITY FUNCTIONS ---
 
     // Basic CSV to Array of Objects parser
-    function csvToArray(csvString) {
+    function csvToArray(csvString, csvUrlForContext) { // Added csvUrlForContext
         const lines = csvString.trim().split('\n');
-        if (lines.length < 2) return []; // No data or only headers
+        if (lines.length < 2) {
+           console.warn(`CSV from ${csvUrlForContext} has no data or only headers.`);
+            return [];
+        }
 
         const headers = lines[0].split(',').map(header => header.trim());
         const array = [];
 
         for (let i = 1; i < lines.length; i++) {
-            // Handle cases where commas might be inside quoted fields if necessary
-            // For simple CSVs, this split is okay. For complex ones, a more robust parser is needed.
-            const values = lines[i].split(',').map(value => value.trim().replace(/^"|"$/g, '')); // Trim and remove surrounding quotes
+            const lineContent = lines[i].trim(); // Trim the line itself
+            if (lineContent === "") { // Skip completely blank lines
+                console.log(`Skipping blank line in ${csvUrlForContext} at CSV line number ${i + 1}`);
+                continue;
+            }
+
+            const values = lineContent.split(',').map(value => value.trim().replace(/^"|"$/g, ''));
             if (values.length === headers.length) {
                 const obj = {};
                 headers.forEach((header, index) => {
@@ -27,24 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 array.push(obj);
             } else {
-                console.warn('Skipping malformed CSV line:', lines[i]);
+                // This is approximately line 30 from your error message
+                console.warn(`Skipping malformed CSV line in ${csvUrlForContext} at CSV line number ${i + 1}. Expected ${headers.length} columns, got ${values.length}. Line content: "${lineContent}"`);
             }
         }
         return array;
     }
 
     // Fetch and parse a CSV file from a URL
-    async function fetchCsvData(csvUrl) {
+    async function fetchCsvData(csvUrl) { // csvUrl is already the first parameter
         const response = await fetch(csvUrl);
         if (!response.ok) {
-            // Log more details for network errors
             console.error(`Failed to fetch CSV ${csvUrl}: ${response.status} ${response.statusText}`);
             const errorBody = await response.text().catch(() => "Could not read error body.");
             console.error("Error response body:", errorBody);
             throw new Error(`Failed to fetch CSV ${csvUrl}: ${response.status} ${response.statusText}`);
         }
         const csvText = await response.text();
-        return csvToArray(csvText);
+        // Pass the csvUrl to csvToArray for better context in warnings
+        return csvToArray(csvText, csvUrl);
     }
 
     // --- 2. VOTE PROCESSING ---
