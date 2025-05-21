@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi 2: Con số may mắn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Trò chơi 2: Con số may mắn</h1>
+        <nav class="sub-nav">
+            <a href="index.html">Về trang chủ</a>
+        </nav>
+    </header>
+    <main>
+        <section class="game-section">
+            <div class="input-form">
+                <label for="jackpot1_1">Jackpot 1 số 1:</label>
+                <input type="number" id="jackpot1_1" min="1" max="99" required>
+                <label for="jackpot1_2">Jackpot 1 số 2:</label>
+                <input type="number" id="jackpot1_2" min="1" max="99" required>
+                <label for="jackpot1_3">Jackpot 1 số 3:</label>
+                <input type="number" id="jackpot1_3" min="1" max="99" required>
+                <label for="jackpot1_4">Jackpot 1 số 4:</label>
+                <input type="number" id="jackpot1_4" min="1" max="99" required>
+                <label for="jackpot1_5">Jackpot 1 số 5:</label>
+                <input type="number" id="jackpot1_5" min="1" max="99" required>
+                <label for="jackpot1_6">Jackpot 1 số 6:</label>
+                <input type="number" id="jackpot1_6" min="1" max="99" required>
+                <label for="jackpot2">Jackpot 2 (Số đặc biệt):</label>
+                <input type="number" id="jackpot2" min="1" max="99" required>
+                <button onclick="calculateLuckyNumber()">Xác định số may mắn</button>
+            </div>
+            <h3>Người thắng cuộc trò chơi 2:</h3>
+            <div id="game2-winners" class="winners-table"></div>
+        </section>
+    </main>
+    <script src="js/game2.js"></script>
+</body>
+</html>

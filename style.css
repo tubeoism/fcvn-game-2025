@@ -11,6 +11,32 @@ header {
     color: white;
     padding: 1rem 0;
     text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.sub-nav {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.sub-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.sub-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 main {
@@ -20,12 +46,49 @@ main {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    min-height: 500px; /* Đảm bảo chiều cao tối thiểu cho trang */
+}
+
+.home-page {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.home-page .greeting {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.game-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.game-link {
+    background-color: #008CBA;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    text-decoration: none;
+    width: 80%;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+.game-link:hover {
+    background-color: #005f7b;
 }
 
 .game-section {
     margin-bottom: 40px;
-    border-bottom: 1px solid #eee;
     padding-bottom: 20px;
+    text-align: center; /* Căn giữa nội dung trong game section */
 }
 
 .game-section h2 {
@@ -50,9 +113,14 @@ button:hover {
     background-color: #005f7b;
 }
 
-canvas {
-    max-width: 100%;
-    height: auto;
+.chart-container {
+    width: 90%; /* Giới hạn chiều rộng của biểu đồ */
+    max-width: 800px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto 30px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
 }
 
 .winners-table {
@@ -101,11 +169,17 @@ canvas {
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fcfcfc;
 }
 
 .input-form label {
     flex-basis: 150px;
     text-align: right;
+    font-weight: bold;
+    color: #555;
 }
 
 .input-form input {
@@ -114,4 +188,5 @@ canvas {
     border-radius: 4px;
     width: 80px;
     text-align: center;
+    font-size: 1em;
 }
