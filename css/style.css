@@ -1,144 +1,121 @@
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-}
-
-.container {
-    max-width: 960px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    line-height: 1.6;
 }
 
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 0;
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
     text-align: center;
-    margin-bottom: 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 }
 
-nav {
-    text-align: center;
-    margin-bottom: 20px;
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
 }
 
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-    transition: color 0.3s ease;
+header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 
-nav a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-h1, h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.game-section {
-    margin-bottom: 30px;
+main {
     padding: 20px;
-    border: 1px solid #ddd;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.input-group {
-    margin-bottom: 15px;
+section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 30px 0;
 }
 
-.input-group input[type="text"],
-.input-group input[type="number"] {
-    width: calc(100% - 22px); /* Adjust for padding and border */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-#resultArea, #winnerArea {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #eee;
-    background-color: #fff;
-    border-radius: 4px;
-    min-height: 50px; /* Ensure visibility */
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #007bff;
+h3 {
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .chart-container {
-    position: relative;
-    height: 40vh; /* Chiều cao tương đối */
-    width: 80vw; /* Chiều rộng tương đối */
-    max-width: 600px; /* Chiều rộng tối đa */
-    margin: 20px auto; /* Căn giữa */
+    width: 100%;
+    max-width: 700px; /* Adjust as needed */
+    margin: 0 auto; /* Center the chart */
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        margin: 10px;
-        padding: 15px;
-    }
+#topVotedInfo {
+    background: #e9f5ff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #c7e0f4;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
+}
 
-    nav a {
-        margin: 0 8px;
-        font-size: 0.9rem;
-    }
+#topVotedInfo img {
+    max-width: 200px; /* Increased size */
+    max-height: 200px; /* Increased size */
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 15px; /* Space below image */
+    border: 3px solid #007bff;
+    object-fit: cover; /* Ensure image covers the area well */
+}
 
-    .input-group input[type="text"],
-    .input-group input[type="number"] {
-        width: calc(100% - 20px);
-    }
+#topVotedInfo h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #0056b3;
+    font-size: 1.8em;
+}
 
-    button {
-        padding: 10px;
-        font-size: 1rem;
-    }
+#topVotedInfo p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
 
-    .chart-container {
-        height: 50vh;
-        width: 90vw;
-    }
+#topVotedInfo .location {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#topVotedInfo .intro {
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1em;
+    text-align: left;
+    border: 1px dashed #ccc;
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+    margin-top: 30px;
 }
