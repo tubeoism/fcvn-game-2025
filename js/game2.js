@@ -111,7 +111,8 @@ async function calculateLuckyNumber() {
     }
     
     const percentileRank = ((L + 0.5 * E) / allNumbersSorted.length) * 100;
-    const roundedPercentileRank = parseFloat(percentileRank.toFixed(4)); // Làm tròn đến %
+    // Làm tròn đến phần vạn (4 chữ số thập phân)
+    const roundedPercentileRank = parseFloat(percentileRank.toFixed(4));
 
     document.getElementById('percentile-rank-display').textContent = roundedPercentileRank;
 
@@ -125,27 +126,41 @@ async function calculateLuckyNumber() {
     const luckyNumbers = luckyNumberData.lucky_number.nominee.map(n => parseInt(n.lucky_number)).sort((a, b) => a - b);
 
     // Tính giá trị ngưỡng bách phân vị tương ứng trong chuỗi lucky numbers
-    // Đây là giá trị tại vị trí percentileRank trong tập luckyNumbers.
+    // Đây là giá trị tại vị trí percentileRank trong tập luckyNumbers, có thể là số lẻ qua nội suy.
     let percentileThresholdValue = 0;
     if (luckyNumbers.length > 0) {
         // Áp dụng công thức index = (K/100) * (N-1)
         const indexFloat = (roundedPercentileRank / 100) * (luckyNumbers.length - 1);
-        const indexLower = Math.floor(indexFloat);
 
-        // Lấy giá trị tại index làm tròn xuống. Đây là ngưỡng.
-        if (indexLower >= 0 && indexLower < luckyNumbers.length) {
-            percentileThresholdValue = luckyNumbers[indexLower];
-        } else if (indexLower < 0) {
-            percentileThresholdValue = luckyNumbers[0]; // Nếu bách phân vị quá thấp, lấy số nhỏ nhất
+        const indexLower = Math.floor(indexFloat);
+        const indexUpper = Math.ceil(indexFloat);
+
+        // Xử lý các trường hợp biên của indexFloat trước khi nội suy
+        if (indexFloat < 0) {
+            percentileThresholdValue = luckyNumbers[0];
+        } else if (indexFloat >= luckyNumbers.length - 1) {
+            percentileThresholdValue = luckyNumbers[luckyNumbers.length - 1];
         } else {
-            percentileThresholdValue = luckyNumbers[luckyNumbers.length - 1]; // Nếu bách phân vị quá cao, lấy số lớn nhất
+            // Nếu indexFloat là số nguyên (hoặc làm tròn), lấy giá trị tại index đó
+            if (indexLower === indexUpper) {
+                percentileThresholdValue = luckyNumbers[indexLower];
+            } else {
+                // Thực hiện nội suy tuyến tính nếu indexFloat là số thập phân
+                const lowerValue = luckyNumbers[indexLower];
+                const upperValue = luckyNumbers[indexUpper];
+                const fraction = indexFloat - indexLower; // Phần thập phân của index
+
+                // Công thức nội suy tuyến tính: value = lowerValue + (upperValue - lowerValue) * fraction
+                percentileThresholdValue = lowerValue + (upperValue - lowerValue) * fraction;
+            }
         }
     }
     
-    document.getElementById('calculated-lucky-value-display').textContent = percentileThresholdValue;
+    // Hiển thị percentileThresholdValue làm tròn đến 4 chữ số thập phân
+    document.getElementById('calculated-lucky-value-display').textContent = percentileThresholdValue.toFixed(4);
 
 
-    // Xác định số may mắn là số lớn nhất NHỎ HƠN HOẶC BẰNG giá trị ngưỡng đã tính.
+    // Xác định số may mắn là số lớn nhất NHỎ HƠN HOẶC BẰNG giá trị ngưỡng đã tính (percentileThresholdValue).
     // Duyệt ngược từ cuối danh sách `luckyNumbers` đã sắp xếp.
     let finalLuckyNumber = null;
     for (let i = luckyNumbers.length - 1; i >= 0; i--) {
