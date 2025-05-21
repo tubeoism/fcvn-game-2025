@@ -46,15 +46,18 @@ function displayWinners(containerId, winners) {
     });
 }
 
-// Hàm kiểm tra và giới hạn giá trị input
-function validateInput(input) {
+// Hàm định dạng và kiểm tra giá trị input khi mất focus
+function formatAndValidateInput(input) {
     let value = parseInt(input.value, 10);
-    if (isNaN(value)) {
-        input.value = ''; // Xóa giá trị nếu không phải số
+
+    if (isNaN(value) || input.value.trim() === '') {
+        input.value = ''; // Xóa giá trị nếu không phải số hoặc trống
     } else {
         if (value < input.min) value = parseInt(input.min, 10);
         if (value > input.max) value = parseInt(input.max, 10);
-        input.value = value; // Gán lại giá trị đã giới hạn
+        
+        // Định dạng số có một chữ số thành 0x
+        input.value = value.toString().padStart(2, '0');
     }
 }
 
@@ -63,9 +66,12 @@ async function calculateLuckyNumber() {
     const jackpot1Inputs = [];
     for (let i = 1; i <= 6; i++) {
         const inputElement = document.getElementById(`jackpot1_${i}`);
+        // Đảm bảo giá trị đã được định dạng trước khi lấy
+        formatAndValidateInput(inputElement); 
         const num = parseInt(inputElement.value, 10);
+
         if (isNaN(num) || num < 1 || num > 55) {
-            alert('Vui lòng nhập 6 số Jackpot 1 hợp lệ (từ 1 đến 55).');
+            alert('Vui lòng nhập 6 số Jackpot 1 hợp lệ (từ 01 đến 55).');
             inputElement.focus();
             return;
         }
@@ -73,9 +79,12 @@ async function calculateLuckyNumber() {
     }
 
     const jackpot2InputElement = document.getElementById('jackpot2');
+    // Đảm bảo giá trị đã được định dạng trước khi lấy
+    formatAndValidateInput(jackpot2InputElement);
     const jackpot2Number = parseInt(jackpot2InputElement.value, 10);
+
     if (isNaN(jackpot2Number) || jackpot2Number < 1 || jackpot2Number > 55) {
-        alert('Vui lòng nhập số Jackpot 2 hợp lệ (từ 1 đến 55).');
+        alert('Vui lòng nhập số Jackpot 2 hợp lệ (từ 01 đến 55).');
         jackpot2InputElement.focus();
         return;
     }
@@ -93,8 +102,8 @@ async function calculateLuckyNumber() {
     const allNumbersSorted = [...allNumbersInput].sort((a, b) => a - b);
     
     // Hiển thị bộ 7 số đã nhập
-    document.getElementById('entered-numbers').textContent = allNumbersInput.join(', ');
-    document.getElementById('jackpot2-display').textContent = jackpot2Number;
+    document.getElementById('entered-numbers').textContent = allNumbersInput.map(num => num.toString().padStart(2, '0')).join(', ');
+    document.getElementById('jackpot2-display').textContent = jackpot2Number.toString().padStart(2, '0');
 
 
     // Tính bách phân vị của số Jackpot 2 (theo công thức Rank-Based)
@@ -177,7 +186,8 @@ async function calculateLuckyNumber() {
         finalLuckyNumber = 0; // Trường hợp luckyNumbers rỗng
     }
 
-    document.getElementById('final-lucky-number-display').textContent = finalLuckyNumber;
+    // Hiển thị số may mắn cuối cùng dưới dạng 0x
+    document.getElementById('final-lucky-number-display').textContent = finalLuckyNumber.toString().padStart(2, '0');
     document.getElementById('calculation-details').style.display = 'block'; // Hiển thị chi tiết tính toán
 
     const winners = luckyNumberData.lucky_number.nominee.filter(n => parseInt(n.lucky_number) === finalLuckyNumber);

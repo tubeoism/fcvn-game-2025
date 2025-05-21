@@ -19,19 +19,19 @@
                 <div class="jackpot-group">
                     <label>Jackpot 1 result (1-55):</label>
                     <div class="numbers-container">
-                        <input type="number" id="jackpot1_1" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
-                        <input type="number" id="jackpot1_2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
-                        <input type="number" id="jackpot1_3" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
-                        <input type="number" id="jackpot1_4" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
-                        <input type="number" id="jackpot1_5" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
-                        <input type="number" id="jackpot1_6" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot1_1" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
+                        <input type="number" id="jackpot1_2" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
+                        <input type="number" id="jackpot1_3" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
+                        <input type="number" id="jackpot1_4" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
+                        <input type="number" id="jackpot1_5" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
+                        <input type="number" id="jackpot1_6" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="jackpot-group">
                     <label>Jackpot 2's special number (1-55):</label>
                     <div class="numbers-container">
-                        <input type="number" id="jackpot2" min="1" max="55" value="" onfocus="this.select()" oninput="validateInput(this)" required>
+                        <input type="number" id="jackpot2" min="1" max="55" value="" onfocus="this.select()" onblur="validateInput(this)" required>
                     </div>
                 </div>
                 <button onclick="calculateLuckyNumber()">Determine the lucky number</button>
