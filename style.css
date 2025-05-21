@@ -161,9 +161,10 @@ button:hover {
     color: #666;
 }
 
+/* Updated styles for Game 2 input form */
 .input-form {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu màn hình nhỏ */
     gap: 10px;
     justify-content: center;
     align-items: center;
@@ -175,18 +176,57 @@ button:hover {
     background-color: #fcfcfc;
 }
 
-.input-form label {
-    flex-basis: 150px;
-    text-align: right;
-    font-weight: bold;
-    color: #555;
+.jackpot-group {
+    display: flex;
+    flex-direction: column; /* Xếp label và numbers-container theo cột */
+    align-items: center;
+    gap: 10px;
 }
 
-.input-form input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 80px;
+.jackpot-group label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.numbers-container {
+    display: flex;
+    gap: 5px; /* Khoảng cách giữa các ô số */
+    align-items: center;
+}
+
+.input-form input[type="number"] {
+    width: 50px; /* Kích thước của hình tròn */
+    height: 50px; /* Kích thước của hình tròn */
+    border-radius: 50%; /* Biến input thành hình tròn */
+    border: 2px solid #4CAF50; /* Viền màu xanh lá */
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    background-color: #e9ffe9; /* Nền màu xanh nhạt */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    -moz-appearance: textfield; /* Ẩn mũi tên input trên Firefox */
+}
+
+/* Ẩn mũi tên input trên Chrome, Safari, Edge */
+.input-form input[type="number"]::-webkit-outer-spin-button,
+.input-form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.input-form input[type="number"]:focus {
+    outline: none;
+    border-color: #008CBA; /* Viền khi focus */
+    box-shadow: 0 0 8px rgba(0, 140, 186, 0.5);
+}
+
+.divider {
+    width: 2px; /* Độ dày của vách ngăn */
+    height: 60px; /* Chiều cao của vách ngăn */
+    background-color: #ccc; /* Màu của vách ngăn */
+    margin: 0 15px; /* Khoảng cách xung quanh vách ngăn */
+    border-radius: 1px;
 }
