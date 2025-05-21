@@ -230,3 +230,22 @@ button:hover {
     margin: 0 15px; /* Khoảng cách xung quanh vách ngăn */
     border-radius: 1px;
 }
+
+/* New styles for spinning display (Game 3) */
+#spinning-display {
+    width: 100%;
+    max-width: 300px;
+    height: auto; /* Chiều cao tự động */
+    border: 3px solid #f39c12; /* Màu vàng cam nổi bật */
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+    animation: pulse 1s infinite alternate; /* Hiệu ứng nhấp nháy nhẹ */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.02); }
+}
+
+#spinning-display img {
+    border: 3px solid #3498db; /* Viền xanh cho ảnh khi quay */
+}
