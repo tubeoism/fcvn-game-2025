@@ -147,5 +147,5 @@ function displayFinalWinner(winner) {
 // Ẩn spinning display khi tải trang ban đầu
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('spinning-display').style.display = 'none';
-    document.getElementById('game3-winner').innerHTML = '<p>Nhấn "Quay thưởng" để tìm người may mắn!</p>';
+    document.getElementById('game3-winner').innerHTML = '<p>Press "Draw the lucky person" to start!</p>';
 });
