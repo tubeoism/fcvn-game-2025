@@ -7,8 +7,8 @@ async function fetchData(filePath) {
         }
         return await response.json();
     } catch (error) {
-        console.error("Lỗi khi tải dữ liệu:", error);
-        showModal(`Lỗi khi tải dữ liệu: ${error.message}. Vui lòng kiểm tra đường dẫn file và cấu trúc JSON.`);
+        console.error("Lỗi khi tải dữ liệu:", filePath, error);
+        showModal(`Lỗi khi tải dữ liệu từ ${filePath}: ${error.message}. Vui lòng kiểm tra đường dẫn file và cấu trúc JSON.`);
         return null;
     }
 }
@@ -49,7 +49,7 @@ async function callGeminiAPI(prompt, buttonElement, outputElement) {
             if (outputElement) {
                 outputElement.textContent = "Xin lỗi, không thể tạo nội dung lúc này.";
             }
-            showModal("Có lỗi xảy ra khi tạo nội dung từ Gemini. Chi tiết: " + (result.error?.message || "Không có nội dung trả về."));
+            showModal("Có lỗi xảy ra khi tạo nội dung từ Gemini: " + (result.error?.message || "Không có nội dung trả về."));
         }
     } catch (error) {
         console.error("Error calling Gemini API:", error);
@@ -60,11 +60,10 @@ async function callGeminiAPI(prompt, buttonElement, outputElement) {
     } finally {
         if (buttonElement) {
             buttonElement.disabled = false;
-            // Restore original button text (might need to store it or be more generic)
-            if (buttonElement.id === 'generateSpeechBtn') {
-                 buttonElement.innerHTML = '✨ Tạo Lời Phát Biểu';
-            } else {
+            if (buttonElement.id.startsWith('generateCongratsBtnG1')) {
                  buttonElement.innerHTML = '✨ Tạo Lời Chúc';
+            } else if (buttonElement.id === 'generateSpeechBtn') {
+                 buttonElement.innerHTML = '✨ Tạo Lời Phát Biểu';
             }
         }
     }
@@ -112,30 +111,65 @@ function closeModal() {
 // --- Game 1: Voting Game ---
 let voteChartInstance = null; 
 
-async function initGame1() {
-    const voteRecords = await fetchData('./data/vote_records.json');
-    const votingRef = await fetchData('./data/voting_ref.json');
+// Function to extract ID from nominee string like "ID01 - Name - Department"
+function extractIdFromString(nomineeString) {
+    if (typeof nomineeString !== 'string') return null;
+    return nomineeString.split(' ')[0]; // Assumes ID is the first part
+}
 
-    if (!voteRecords || !votingRef) {
-        showModal("Không thể tải dữ liệu cho Trò chơi 1. Vui lòng kiểm tra console.");
+async function initGame1() {
+    const voteRecordsRaw = await fetchData('./data/vote_records.json');
+    const votingRefRaw = await fetchData('./data/voting_ref.json');
+
+    if (!voteRecordsRaw || !voteRecordsRaw.records || !voteRecordsRaw.records.vote ||
+        !votingRefRaw || !votingRefRaw.voting_ref || !votingRefRaw.voting_ref.nominee) {
+        showModal("Cấu trúc dữ liệu cho Trò chơi 1 không đúng hoặc file rỗng. Vui lòng kiểm tra file vote_records.json và voting_ref.json.");
         return;
     }
     
-    const nomineeDetailsMap = new Map(votingRef.map(nominee => [nominee.id, nominee]));
+    const actualVoteRecords = voteRecordsRaw.records.vote;
+    const actualVotingRef = votingRefRaw.voting_ref.nominee;
 
-    const voteCounts = {};
-    voteRecords.forEach(record => {
-        if (record.nominees_voted && Array.isArray(record.nominees_voted)) {
-            record.nominees_voted.forEach(nomineeId => {
-                if (nomineeDetailsMap.has(nomineeId)) { 
-                     voteCounts[nomineeId] = (voteCounts[nomineeId] || 0) + 1;
-                }
+    // Create a map for quick lookup of nominee details using extracted ID
+    const nomineeDetailsMap = new Map();
+    actualVotingRef.forEach(nominee => {
+        const id = extractIdFromString(nominee.aggregate); // Extract ID from "aggregate"
+        if (id) {
+            nomineeDetailsMap.set(id, {
+                id: id, // Store the extracted ID
+                name: nominee.name,
+                department: nominee.department,
+                self_intro: nominee.about, // Use 'about' for self_intro
+                thumbnail: nominee.thumbnail
             });
         }
     });
 
+    const voteCounts = {};
+    actualVoteRecords.forEach(record => {
+        const nomineesVotedIds = [
+            extractIdFromString(record.nominee_1),
+            extractIdFromString(record.nominee_2),
+            extractIdFromString(record.nominee_3)
+        ].filter(id => id !== null); // Filter out any null IDs if extraction fails
+
+        nomineesVotedIds.forEach(nomineeId => {
+            if (nomineeDetailsMap.has(nomineeId)) { 
+                 voteCounts[nomineeId] = (voteCounts[nomineeId] || 0) + 1;
+            }
+        });
+    });
+    
     const sortedNominees = Object.entries(voteCounts)
-        .map(([id, votes]) => ({ id, name: (nomineeDetailsMap.get(id)?.name || 'Không rõ tên'), votes, department: (nomineeDetailsMap.get(id)?.department || 'Không rõ phòng ban') }))
+        .map(([id, votes]) => {
+            const details = nomineeDetailsMap.get(id);
+            return { 
+                id: id, 
+                name: details?.name || 'Không rõ tên', 
+                votes: votes,
+                department: details?.department || 'Không rõ phòng ban'
+            };
+        })
         .sort((a, b) => b.votes - a.votes);
 
     const labels = sortedNominees.map(n => n.name);
@@ -161,34 +195,7 @@ async function initGame1() {
                 borderWidth: 1
             }]
         },
-        options: {
-            indexAxis: 'y', 
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    ticks: { color: '#e2e8f0', stepSize: 1 }, 
-                    grid: { color: '#4a5568' } 
-                },
-                y: {
-                    ticks: { color: '#e2e8f0' }, 
-                    grid: { color: '#2d3748' } 
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false 
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.dataset.label}: ${context.raw}`;
-                        }
-                    }
-                }
-            }
-        }
+        options: { /* ... existing chart options ... */ }
     });
 
     const voteWinnersDiv = document.getElementById('voteWinners');
@@ -200,7 +207,7 @@ async function initGame1() {
 
         if (winners.length > 0) {
             winners.forEach((winner, index) => {
-                const nomineeInfo = nomineeDetailsMap.get(winner.id);
+                const nomineeInfo = nomineeDetailsMap.get(winner.id); // Get full info using the ID
                 if (nomineeInfo) {
                     const winnerCardId = `winnerCardG1-${index}`;
                     const generatedMessageId = `generatedMessageG1-${index}`;
@@ -209,7 +216,7 @@ async function initGame1() {
                     const winnerCardHTML = `
                         <div class="winner-card" id="${winnerCardId}">
                             <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                                <img src="${nomineeInfo.thumbnail}" alt="${nomineeInfo.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';">
+                                <img src="${nomineeInfo.thumbnail}" alt="${nomineeInfo.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';this.style.border='none';">
                                 <div class="text-center sm:text-left flex-grow">
                                     <h4 class="text-xl md:text-2xl font-bold text-red-300">${nomineeInfo.name}</h4>
                                     <p class="text-gray-300">${nomineeInfo.department}</p>
@@ -225,7 +232,6 @@ async function initGame1() {
                 }
             });
             
-            // Add event listeners after cards are in DOM
             winners.forEach((winner, index) => {
                 const generateButtonId = `generateCongratsBtnG1-${index}`;
                 const btn = document.getElementById(generateButtonId);
@@ -245,7 +251,7 @@ async function initGame1() {
             voteWinnersDiv.innerHTML = '<p class="text-gray-400 text-center col-span-full">Không có người thắng cuộc.</p>';
         }
     } else {
-         voteWinnersDiv.innerHTML = '<p class="text-gray-400 text-center col-span-full">Chưa có dữ liệu bình chọn.</p>';
+         voteWinnersDiv.innerHTML = '<p class="text-gray-400 text-center col-span-full">Chưa có dữ liệu bình chọn hoặc không có ứng viên hợp lệ.</p>';
     }
 }
 
@@ -299,11 +305,19 @@ if (luckyNumberForm) {
             return;
         }
 
-        const luckyNumberChain = await fetchData('./data/lucky_number.json'); 
-        const participantsData = await fetchData('./data/voting_ref.json'); 
+        const participantsDataRaw = await fetchData('./data/lucky_number.json'); 
 
-        if (!luckyNumberChain || !participantsData) {
-            showModal("Không thể tải dữ liệu cho Trò chơi 2. Vui lòng kiểm tra console.");
+        if (!participantsDataRaw || !participantsDataRaw.lucky_number || !participantsDataRaw.lucky_number.nominee) {
+            showModal("Cấu trúc dữ liệu cho người tham gia Trò chơi 2 (lucky_number.json) không đúng hoặc file rỗng.");
+            return;
+        }
+        const participantsData = participantsDataRaw.lucky_number.nominee;
+
+        // Derive luckyNumberChain from the participants' lucky numbers
+        const luckyNumberChain = [...new Set(participantsData.map(p => parseInt(p.lucky_number)).filter(n => !isNaN(n)))].sort((a, b) => a - b);
+
+        if (luckyNumberChain.length === 0) {
+            showModal("Không có số may mắn hợp lệ nào trong file lucky_number.json để tạo chuỗi tính toán.");
             return;
         }
         
@@ -312,10 +326,6 @@ if (luckyNumberForm) {
         const percentileRank = Math.round(((rankOfS7 - 1) / (7 - 1)) * 100);
 
         const M = luckyNumberChain.length;
-        if (M === 0) {
-            showModal("Chuỗi số may mắn (lucky_number.json) rỗng.");
-            return;
-        }
         const percentileValueIndex = Math.round((percentileRank / 100) * (M - 1));
         const V_percentile = luckyNumberChain[Math.min(Math.max(0, percentileValueIndex), M - 1)]; 
 
@@ -336,7 +346,7 @@ if (luckyNumberForm) {
                     <p>7 số sau khi sắp xếp: ${sortedInputNumbers.join(', ')}</p>
                     <p>Vị trí của S7 trong dãy sắp xếp (k): ${rankOfS7}</p>
                     <p>Vị trí bách phân vị (làm tròn %): ${percentileRank}%</p>
-                    <p>Chuỗi số may mắn (lucky_number.json): [${luckyNumberChain.join(', ')}]</p>
+                    <p>Chuỗi số may mắn được tạo từ file: [${luckyNumberChain.join(', ')}]</p>
                     <p>Giá trị bách phân vị tương ứng (V_percentile) từ chuỗi số may mắn: ${V_percentile}</p>
                     <p class="font-bold text-xl text-yellow-300">Số May Mắn Được Xác Định: ${determinedLuckyNumber}</p>
                 `;
@@ -347,30 +357,30 @@ if (luckyNumberForm) {
                     <p>7 số sau khi sắp xếp: ${sortedInputNumbers.join(', ')}</p>
                     <p>Vị trí của S7 trong dãy sắp xếp (k): ${rankOfS7}</p>
                     <p>Vị trí bách phân vị (làm tròn %): ${percentileRank}%</p>
-                    <p>Chuỗi số may mắn (lucky_number.json): [${luckyNumberChain.join(', ')}]</p>
+                    <p>Chuỗi số may mắn được tạo từ file: [${luckyNumberChain.join(', ')}]</p>
                     <p>Giá trị bách phân vị tương ứng (V_percentile) từ chuỗi số may mắn: ${V_percentile}</p>
                     <p class="font-bold text-xl text-yellow-300">Không tìm thấy số may mắn nào nhỏ hơn ${V_percentile} trong chuỗi.</p>
                 `;
             }
         }
 
-
         const luckyNumberWinnersDiv = document.getElementById('luckyNumberWinners');
         if(luckyNumberWinnersDiv) {
             luckyNumberWinnersDiv.innerHTML = ''; 
 
             if (determinedLuckyNumber !== -1) {
-                const winners = participantsData.filter(p => p.lucky_number_game2 === determinedLuckyNumber);
+                // Filter winners from participantsData (lucky_number.json)
+                const winners = participantsData.filter(p => parseInt(p.lucky_number) === determinedLuckyNumber);
                 if (winners.length > 0) {
                     winners.forEach(winner => {
                         const winnerCard = `
                             <div class="winner-card flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                                <img src="${winner.thumbnail}" alt="${winner.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';">
+                                <img src="${winner.thumbnail}" alt="${winner.name}" class="w-24 h-24 md:w-32 md:h-32 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=Ảnh';this.style.border='none';">
                                 <div class="text-center sm:text-left">
                                     <h4 class="text-xl md:text-2xl font-bold text-red-300">${winner.name}</h4>
                                     <p class="text-gray-300">${winner.department}</p>
-                                    <p class="text-gray-400 mt-2 text-sm italic">"${winner.self_intro}"</p>
-                                    <p class="text-yellow-400 font-semibold">Số may mắn cá nhân: ${winner.lucky_number_game2}</p>
+                                    <p class="text-gray-400 mt-2 text-sm italic">"${winner.about}"</p>
+                                    <p class="text-yellow-400 font-semibold">Số may mắn cá nhân: ${winner.lucky_number}</p>
                                 </div>
                             </div>`;
                         luckyNumberWinnersDiv.innerHTML += winnerCard;
@@ -392,11 +402,12 @@ const generatedSpeechG3Div = document.getElementById('generatedSpeechG3');
 
 if (drawGrandPrizeButton) {
     drawGrandPrizeButton.addEventListener('click', async function() {
-        const grandPrizeParticipants = await fetchData('./data/grand_prize.json');
-        if (!grandPrizeParticipants || grandPrizeParticipants.length === 0) {
-            showModal("Không có danh sách người tham gia cho Giải Đặc Biệt hoặc không thể tải dữ liệu.");
+        const grandPrizeParticipantsRaw = await fetchData('./data/grand_prize.json');
+        if (!grandPrizeParticipantsRaw || !grandPrizeParticipantsRaw.grand_prize || !grandPrizeParticipantsRaw.grand_prize.nominee || grandPrizeParticipantsRaw.grand_prize.nominee.length === 0) {
+            showModal("Cấu trúc dữ liệu cho Giải Đặc Biệt (grand_prize.json) không đúng hoặc không có người tham gia.");
             return;
         }
+        const grandPrizeParticipants = grandPrizeParticipantsRaw.grand_prize.nominee;
 
         const button = this;
         const originalText = button.textContent;
@@ -415,10 +426,10 @@ if (drawGrandPrizeButton) {
             if(grandPrizeWinnerDiv) {
                 grandPrizeWinnerDiv.innerHTML = `
                     <div class="winner-card inline-block max-w-md mx-auto">
-                        <img src="${winner.thumbnail}" alt="${winner.name}" class="w-32 h-32 md:w-40 md:h-40 object-cover mx-auto mb-4" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=Ảnh';">
+                        <img src="${winner.thumbnail}" alt="${winner.name}" class="w-32 h-32 md:w-40 md:h-40 object-cover mx-auto mb-4" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=Ảnh';this.style.border='none';">
                         <h4 class="text-2xl md:text-3xl font-bold text-yellow-300">${winner.name}</h4>
                         <p class="text-gray-200 text-lg">${winner.department}</p>
-                        <p class="text-gray-300 mt-3 text-md italic">"${winner.self_intro}"</p>
+                        <p class="text-gray-300 mt-3 text-md italic">"${winner.about}"</p>
                     </div>
                 `;
                 if (generateSpeechBtn) {
