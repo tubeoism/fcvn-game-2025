@@ -111,7 +111,7 @@ async function calculateLuckyNumber() {
     }
     
     const percentileRank = ((L + 0.5 * E) / allNumbersSorted.length) * 100;
-    const roundedPercentileRank = Math.round(percentileRank); // Làm tròn đến %
+    const roundedPercentileRank = parseFloat(percentileRank.toFixed(4)); // Làm tròn đến %
 
     document.getElementById('percentile-rank-display').textContent = roundedPercentileRank;
 
