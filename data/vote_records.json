@@ -3,59 +3,493 @@
     "vote": [
       {
         "id": "1",
-        "time": "5/21/2025 3:59:48",
-        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
-        "nominee_2": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
-        "nominee_3": "ID42 - Hoang Thao Nhi - Accounting Department (HCM)"
+        "time": "5/22/2025 3:46:13",
+        "nominee_1": "ID22 - Nguyen Thi Huynh Nhu - Accounting Department (HCM)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
       },
       {
         "id": "2",
-        "time": "5/21/2025 13:06:07",
-        "nominee_1": "ID05 - Tran Thi Hoai Thuong - Tax Department (HCM)",
-        "nominee_2": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
-        "nominee_3": "ID12 - Dao Thi Thuy - Tax Department (HN)"
-      },
-      {
-        "id": "3",
-        "time": "5/21/2025 13:06:31",
-        "nominee_1": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
-        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
-        "nominee_3": "ID14 - Nguyen Thi Thuy Hang - Tax Department (HCM)"
-      },
-      {
-        "id": "4",
-        "time": "5/21/2025 15:51:40",
-        "nominee_1": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
-        "nominee_2": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
-        "nominee_3": "ID06 - Vo Thi Hoa Mai - Tax Department (HN)"
-      },
-      {
-        "id": "5",
-        "time": "5/21/2025 15:51:53",
-        "nominee_1": "ID35 - Vu Khanh Hung - Accounting Department (HN)",
-        "nominee_2": "ID36 - Nguyen Lan Anh - Tax Department (HN)",
+        "time": "5/22/2025 8:41:32",
+        "nominee_1": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_2": "ID17 - Nguyen Thi Minh Hang - Admin Department (HN)",
         "nominee_3": "ID38 - Nguyen Thi Dung - Admin Department (HN)"
       },
       {
+        "id": "3",
+        "time": "5/22/2025 8:42:16",
+        "nominee_1": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_2": "ID39 - Mai Thanh Huyen - Admin Department (HN)",
+        "nominee_3": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)"
+      },
+      {
+        "id": "4",
+        "time": "5/22/2025 8:49:09",
+        "nominee_1": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_2": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "nominee_3": "ID23 - Bui Khanh Linh - Tax Department (HN)"
+      },
+      {
+        "id": "5",
+        "time": "5/22/2025 8:56:16",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)",
+        "nominee_3": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)"
+      },
+      {
         "id": "6",
-        "time": "5/21/2025 15:52:00",
-        "nominee_1": "ID38 - Nguyen Thi Dung - Admin Department (HN)",
-        "nominee_2": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)",
-        "nominee_3": "ID41 - Nguyen Thi Hao - Accounting Department (HCM)"
+        "time": "5/22/2025 9:04:40",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "nominee_3": "ID29 - Dinh Thu Hien - Japan Desk (HN)"
       },
       {
         "id": "7",
-        "time": "5/21/2025 15:52:09",
-        "nominee_1": "ID29 - Dinh Thu Hien - Japan Desk (HN)",
-        "nominee_2": "ID30 - Vu Manh Hai - Accounting Department (HN)",
-        "nominee_3": "ID33 - Tran Hoang Hai Yen - Accounting Department (HCM)"
+        "time": "5/22/2025 9:07:55",
+        "nominee_1": "ID06 - Vo Thi Hoa Mai - Tax Department (HN)",
+        "nominee_2": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)",
+        "nominee_3": "ID38 - Nguyen Thi Dung - Admin Department (HN)"
       },
       {
         "id": "8",
-        "time": "5/21/2025 15:53:24",
-        "nominee_1": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "time": "5/22/2025 9:08:25",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_3": "ID04 - Doan Thi Lan Anh - Tax Department (HN)"
+      },
+      {
+        "id": "9",
+        "time": "5/22/2025 9:09:03",
+        "nominee_1": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_2": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "10",
+        "time": "5/22/2025 9:11:54",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID29 - Dinh Thu Hien - Japan Desk (HN)",
+        "nominee_3": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)"
+      },
+      {
+        "id": "11",
+        "time": "5/22/2025 9:19:42",
+        "nominee_1": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_2": "ID17 - Nguyen Thi Minh Hang - Admin Department (HN)",
+        "nominee_3": "ID29 - Dinh Thu Hien - Japan Desk (HN)"
+      },
+      {
+        "id": "12",
+        "time": "5/22/2025 9:20:24",
+        "nominee_1": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
+        "nominee_2": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_3": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)"
+      },
+      {
+        "id": "13",
+        "time": "5/22/2025 9:21:27",
+        "nominee_1": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_2": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "14",
+        "time": "5/22/2025 9:23:03",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_3": "ID08 - Ta Thi Thao - Accounting Department (HCM)"
+      },
+      {
+        "id": "15",
+        "time": "5/22/2025 9:27:36",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "16",
+        "time": "5/22/2025 9:34:50",
+        "nominee_1": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "nominee_2": "ID14 - Nguyen Thi Thuy Hang - Tax Department (HCM)",
+        "nominee_3": "ID15 - Vu Thi Anh Tuyet - Tax Department (HCM)"
+      },
+      {
+        "id": "17",
+        "time": "5/22/2025 9:38:56",
+        "nominee_1": "ID02 - Bui Thi Tuyet Ngan - Accounting Department (HN)",
+        "nominee_2": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "nominee_3": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)"
+      },
+      {
+        "id": "18",
+        "time": "5/22/2025 9:40:06",
+        "nominee_1": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "nominee_2": "ID12 - Dao Thi Thuy - Tax Department (HN)",
+        "nominee_3": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)"
+      },
+      {
+        "id": "19",
+        "time": "5/22/2025 9:40:33",
+        "nominee_1": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "nominee_2": "ID14 - Nguyen Thi Thuy Hang - Tax Department (HCM)",
+        "nominee_3": "ID15 - Vu Thi Anh Tuyet - Tax Department (HCM)"
+      },
+      {
+        "id": "20",
+        "time": "5/22/2025 9:40:53",
+        "nominee_1": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)"
+      },
+      {
+        "id": "21",
+        "time": "5/22/2025 9:50:39",
+        "nominee_1": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_2": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)",
+        "nominee_3": "ID15 - Vu Thi Anh Tuyet - Tax Department (HCM)"
+      },
+      {
+        "id": "22",
+        "time": "5/22/2025 10:14:00",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID39 - Mai Thanh Huyen - Admin Department (HN)",
+        "nominee_3": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)"
+      },
+      {
+        "id": "23",
+        "time": "5/22/2025 10:14:09",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "24",
+        "time": "5/22/2025 10:14:58",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID16 - Pham Thi Huyen Trang - Tax Department (HN)",
+        "nominee_3": "ID21 - Doan Thi Thanh Hang - Japan Desk (HN)"
+      },
+      {
+        "id": "25",
+        "time": "5/22/2025 10:15:16",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "26",
+        "time": "5/22/2025 10:15:34",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
         "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
-        "nominee_3": "ID26 - Luu Do Thuong - Tax Department (HN)"
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "27",
+        "time": "5/22/2025 10:16:32",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "28",
+        "time": "5/22/2025 10:17:14",
+        "nominee_1": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID36 - Nguyen Lan Anh - Tax Department (HN)"
+      },
+      {
+        "id": "29",
+        "time": "5/22/2025 10:22:45",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "30",
+        "time": "5/22/2025 10:26:37",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "31",
+        "time": "5/22/2025 10:30:24",
+        "nominee_1": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)"
+      },
+      {
+        "id": "32",
+        "time": "5/22/2025 10:31:09",
+        "nominee_1": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "33",
+        "time": "5/22/2025 10:31:26",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "34",
+        "time": "5/22/2025 10:31:43",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "35",
+        "time": "5/22/2025 10:32:10",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID05 - Tran Thi Hoai Thuong - Tax Department (HCM)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "36",
+        "time": "5/22/2025 10:32:48",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)"
+      },
+      {
+        "id": "37",
+        "time": "5/22/2025 10:35:08",
+        "nominee_1": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "38",
+        "time": "5/22/2025 10:35:57",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "39",
+        "time": "5/22/2025 10:36:35",
+        "nominee_1": "ID25 - Pham Thi Mai Linh - Accounting Department (HCM)",
+        "nominee_2": "ID41 - Nguyen Thi Hao - Accounting Department (HCM)",
+        "nominee_3": "ID43 - Tran Minh Hieu - Accounting Department (HCM)"
+      },
+      {
+        "id": "40",
+        "time": "5/22/2025 10:39:42",
+        "nominee_1": "ID11 - Le Thao Quynh Anh - Admin Department (HCM)",
+        "nominee_2": "ID28 - Tran Thi Thuy Linh - Accounting Department (HN)",
+        "nominee_3": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)"
+      },
+      {
+        "id": "41",
+        "time": "5/22/2025 10:45:09",
+        "nominee_1": "ID11 - Le Thao Quynh Anh - Admin Department (HCM)",
+        "nominee_2": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)",
+        "nominee_3": "ID40 - Nguyen Tran Duc Nu - Admin Department (HCM)"
+      },
+      {
+        "id": "42",
+        "time": "5/22/2025 10:45:30",
+        "nominee_1": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "43",
+        "time": "5/22/2025 10:48:36",
+        "nominee_1": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_2": "ID09 - Pham Quynh Linh Duong - Admin Department (HN)",
+        "nominee_3": "ID10 - Le Thi Hong Hanh - Tax Department (HCM)"
+      },
+      {
+        "id": "44",
+        "time": "5/22/2025 10:52:24",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "45",
+        "time": "5/22/2025 10:52:40",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "46",
+        "time": "5/22/2025 10:52:53",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "47",
+        "time": "5/22/2025 10:53:39",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "48",
+        "time": "5/22/2025 11:00:02",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "49",
+        "time": "5/22/2025 11:00:55",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID19 - Pham Thi Huyen - Accounting Department (HN)"
+      },
+      {
+        "id": "50",
+        "time": "5/22/2025 11:04:17",
+        "nominee_1": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "51",
+        "time": "5/22/2025 11:07:17",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID30 - Vu Manh Hai - Accounting Department (HN)",
+        "nominee_3": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)"
+      },
+      {
+        "id": "52",
+        "time": "5/22/2025 11:07:49",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID30 - Vu Manh Hai - Accounting Department (HN)",
+        "nominee_3": "ID35 - Vu Khanh Hung - Accounting Department (HN)"
+      },
+      {
+        "id": "53",
+        "time": "5/22/2025 11:08:47",
+        "nominee_1": "ID33 - Tran Hoang Hai Yen - Accounting Department (HCM)",
+        "nominee_2": "ID42 - Hoang Thao Nhi - Accounting Department (HCM)",
+        "nominee_3": "ID43 - Tran Minh Hieu - Accounting Department (HCM)"
+      },
+      {
+        "id": "54",
+        "time": "5/22/2025 11:10:40",
+        "nominee_1": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_2": "ID25 - Pham Thi Mai Linh - Accounting Department (HCM)",
+        "nominee_3": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)"
+      },
+      {
+        "id": "55",
+        "time": "5/22/2025 11:18:03",
+        "nominee_1": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "nominee_2": "ID28 - Tran Thi Thuy Linh - Accounting Department (HN)",
+        "nominee_3": "ID34 - Dinh Thi Thu Hoa - Accounting Department (HN)"
+      },
+      {
+        "id": "56",
+        "time": "5/22/2025 11:33:05",
+        "nominee_1": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_2": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)",
+        "nominee_3": "ID34 - Dinh Thi Thu Hoa - Accounting Department (HN)"
+      },
+      {
+        "id": "57",
+        "time": "5/22/2025 12:43:39",
+        "nominee_1": "ID06 - Vo Thi Hoa Mai - Tax Department (HN)",
+        "nominee_2": "ID23 - Bui Khanh Linh - Tax Department (HN)",
+        "nominee_3": "ID36 - Nguyen Lan Anh - Tax Department (HN)"
+      },
+      {
+        "id": "58",
+        "time": "5/22/2025 12:48:43",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID11 - Le Thao Quynh Anh - Admin Department (HCM)",
+        "nominee_3": "ID37 - Pham Thi Dinh An - Japan Desk (HCM)"
+      },
+      {
+        "id": "59",
+        "time": "5/22/2025 13:03:29",
+        "nominee_1": "ID01 - Nguyen Thi Kim Tuyen - Accounting Department (HCM)",
+        "nominee_2": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "60",
+        "time": "5/22/2025 13:03:47",
+        "nominee_1": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_2": "ID22 - Nguyen Thi Huynh Nhu - Accounting Department (HCM)",
+        "nominee_3": "ID42 - Hoang Thao Nhi - Accounting Department (HCM)"
+      },
+      {
+        "id": "61",
+        "time": "5/22/2025 13:04:50",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
+      },
+      {
+        "id": "62",
+        "time": "5/22/2025 13:05:56",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_3": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)"
+      },
+      {
+        "id": "63",
+        "time": "5/22/2025 13:06:03",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID35 - Vu Khanh Hung - Accounting Department (HN)",
+        "nominee_3": "ID44 - Nguyen Tuan Tu - Accounting Department (HN)"
+      },
+      {
+        "id": "64",
+        "time": "5/22/2025 13:10:47",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "65",
+        "time": "5/22/2025 13:11:21",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID08 - Ta Thi Thao - Accounting Department (HCM)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "66",
+        "time": "5/22/2025 13:14:17",
+        "nominee_1": "ID03 - Pham Thi Thu Phuong - Accounting Department (HN)",
+        "nominee_2": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "67",
+        "time": "5/22/2025 13:16:45",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)",
+        "nominee_3": "ID31 - Truong Thi Thuy Trang - Accounting Department (HN)"
+      },
+      {
+        "id": "68",
+        "time": "5/22/2025 13:16:46",
+        "nominee_1": "ID04 - Doan Thi Lan Anh - Tax Department (HN)",
+        "nominee_2": "ID07 - Le Thi Thuy - Accounting Department (HN)",
+        "nominee_3": "ID25 - Pham Thi Mai Linh - Accounting Department (HCM)"
+      },
+      {
+        "id": "69",
+        "time": "5/22/2025 13:17:23",
+        "nominee_1": "ID13 - Do Thi Ngoc Tu - Accounting Department (HN)",
+        "nominee_2": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_3": "ID30 - Vu Manh Hai - Accounting Department (HN)"
+      },
+      {
+        "id": "70",
+        "time": "5/22/2025 13:17:43",
+        "nominee_1": "ID19 - Pham Thi Huyen - Accounting Department (HN)",
+        "nominee_2": "ID24 - Cao Thi Quynh Lien - Accounting Department (HN)",
+        "nominee_3": "ID27 - Bui Thi Hoa Hue - Accounting Department (HN)"
       }
     ]
   }
